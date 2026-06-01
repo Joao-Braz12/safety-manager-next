@@ -1,0 +1,143 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+enum Role {
+  ROLE_USER
+  ROLE_PROJECT_LEADER
+  ROLE_ADMIN
+  ROLE_COMPANY_ADMIN
+}
+
+enum AssignmentStatus {
+  PENDING
+  COMPLETED
+}
+
+model Company {
+  id        Int        @id @default(autoincrement())
+  name      String     @unique
+  users     User[]
+  projects  Project[]
+  videos    Video[]
+  briefings Briefing[]
+}
+
+model Project {
+  id        Int     @id @default(autoincrement())
+  name      String
+  company   Company @relation(fields: [companyId], references: [id])
+  companyId Int
+  teams     Team[]
+}
+
+model Team {
+  id              Int              @id @default(autoincrement())
+  name            String
+  project         Project          @relation(fields: [projectId], references: [id])
+  projectId       Int
+  members         User[]
+  teamAssignments TeamAssignment[]
+}
+
+model User {
+  id            Int              @id @default(autoincrement())
+  fullName      String
+  email         String           @unique
+  password      String
+  position      String?
+  role          Role
+  company       Company?         @relation(fields: [companyId], references: [id])
+  companyId     Int?
+  team          Team?            @relation(fields: [teamId], references: [id])
+  teamId        Int?
+  videosCreated Video[]          @relation("VideoCreatedBy")
+  briefings     Briefing[]       @relation("BriefingCreatedBy")
+  assignments   Assignment[]
+  progress      VideoProgress[]
+  declarations  Declaration[]
+  teamAssigned  TeamAssignment[] @relation("AssignedBy")
+}
+
+model Video {
+  id          Int             @id @default(autoincrement())
+  title       String
+  url         String
+  duration    Int
+  createdBy   User            @relation("VideoCreatedBy", fields: [createdById], references: [id])
+  createdById Int
+  company     Company?        @relation(fields: [companyId], references: [id])
+  companyId   Int?
+  briefings   Briefing[]      @relation("BriefingVideos")
+  progress    VideoProgress[]
+}
+
+model Briefing {
+  id              Int              @id @default(autoincrement())
+  title           String
+  description     String?          @db.VarChar(1000)
+  createdBy       User             @relation("BriefingCreatedBy", fields: [createdById], references: [id])
+  createdById     Int
+  company         Company?         @relation(fields: [companyId], references: [id])
+  companyId       Int?
+  videos          Video[]          @relation("BriefingVideos")
+  assignments     Assignment[]
+  teamAssignments TeamAssignment[]
+  declarations    Declaration[]
+}
+
+model Assignment {
+  id         Int              @id @default(autoincrement())
+  user       User             @relation(fields: [userId], references: [id])
+  userId     Int
+  briefing   Briefing         @relation(fields: [briefingId], references: [id])
+  briefingId Int
+  assignedAt DateTime
+  status     AssignmentStatus
+}
+
+model TeamAssignment {
+  id           Int      @id @default(autoincrement())
+  team         Team     @relation(fields: [teamId], references: [id])
+  teamId       Int
+  briefing     Briefing @relation(fields: [briefingId], references: [id])
+  briefingId   Int
+  assignedBy   User     @relation("AssignedBy", fields: [assignedById], references: [id])
+  assignedById Int
+  assignedAt   DateTime
+
+  @@unique([teamId, briefingId])
+}
+
+model VideoProgress {
+  id          Int       @id @default(autoincrement())
+  user        User      @relation(fields: [userId], references: [id])
+  userId      Int
+  video       Video     @relation(fields: [videoId], references: [id])
+  videoId     Int
+  watchedTime Int
+  completed   Boolean   @default(false)
+  completedAt DateTime?
+
+  @@unique([userId, videoId])
+}
+
+model Declaration {
+  id            Int      @id @default(autoincrement())
+  user          User     @relation(fields: [userId], references: [id])
+  userId        Int
+  briefing      Briefing @relation(fields: [briefingId], references: [id])
+  briefingId    Int
+  confirmed     Boolean
+  timestamp     DateTime
+  signatureName String?
+  ipAddress     String?
+  userAgent     String?  @db.VarChar(512)
+
+  @@unique([userId, briefingId])
+}

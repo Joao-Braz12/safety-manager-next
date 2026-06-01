@@ -1,0 +1,17 @@
+services:
+  db:
+    image: mariadb:11
+    container_name: safety_manager_mariadb
+    restart: always
+    environment:
+      MARIADB_ROOT_PASSWORD: rootpw
+      MARIADB_USER: safety
+      MARIADB_PASSWORD: password
+      MARIADB_DATABASE: safety_management
+    ports:
+      - "3306:3306"
+    volumes:
+      - mariadb_data:/var/lib/mysql
+
+volumes:
+  mariadb_data:

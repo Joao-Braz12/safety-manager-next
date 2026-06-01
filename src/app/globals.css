@@ -1,0 +1,169 @@
+@import "tailwindcss";
+
+@theme {
+  /* Brand */
+  --color-acciona-red: #e20714;
+  --color-acciona-red-deep: #b8050f;
+  --color-acciona-red-soft: #ffe8ea;
+
+  /* Neutrals — concrete & graphite */
+  --color-ink: #0c0c0e;
+  --color-graphite-950: #131316;
+  --color-graphite-900: #1d1d1f;
+  --color-graphite-800: #2a2a2d;
+  --color-graphite-700: #3a3a3e;
+  --color-graphite-600: #5a5a60;
+  --color-graphite-500: #80808a;
+  --color-graphite-400: #a9a9b1;
+  --color-graphite-300: #c8c8ce;
+  --color-graphite-200: #e2e2e6;
+  --color-graphite-100: #ededf0;
+  --color-graphite-50: #f6f6f7;
+  --color-bone: #f3f1ec;
+  --color-bone-warm: #ece8df;
+
+  /* Semantics */
+  --color-success: #1f8a4e;
+  --color-warning: #c47b08;
+  --color-danger: #c61e21;
+
+  /* Typography (variables populated by next/font in root layout) */
+  --font-display: var(--font-archivo), ui-sans-serif, system-ui, sans-serif;
+  --font-body: var(--font-dm-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-jetbrains), ui-monospace, SFMono-Regular, monospace;
+
+  /* Radii — flat, industrial */
+  --radius-xs: 2px;
+  --radius-sm: 4px;
+  --radius-md: 6px;
+  --radius-lg: 8px;
+}
+
+@layer base {
+  *,
+  *::before,
+  *::after {
+    border-color: var(--color-graphite-200);
+  }
+
+  html {
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  body {
+    background: var(--color-bone);
+    color: var(--color-ink);
+    font-family: var(--font-body);
+    font-feature-settings: "ss01", "cv11";
+  }
+
+  ::selection {
+    background: var(--color-acciona-red);
+    color: white;
+  }
+}
+
+@layer utilities {
+  .font-display {
+    font-family: var(--font-display);
+    letter-spacing: -0.025em;
+  }
+  .font-mono {
+    font-family: var(--font-mono);
+  }
+
+  /* Hairline divider used as a recurring motif */
+  .hairline {
+    border-top: 1px solid var(--color-graphite-200);
+  }
+  .hairline-strong {
+    border-top: 1px solid var(--color-ink);
+  }
+
+  /* Editorial grid backdrop */
+  .grid-paper {
+    background-image:
+      linear-gradient(to right, rgba(12, 12, 14, 0.04) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(12, 12, 14, 0.04) 1px, transparent 1px);
+    background-size: 56px 56px;
+  }
+
+  /* Industrial diagonal warning stripe */
+  .stripe-warning {
+    background-image: repeating-linear-gradient(
+      45deg,
+      #f1c40f 0 14px,
+      #0c0c0e 14px 28px
+    );
+  }
+
+  /* Subtle noise overlay */
+  .noise::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0.04;
+    mix-blend-mode: multiply;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='240' height='240'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='1.6' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%' height='100%' filter='url(%23n)' opacity='0.7'/></svg>");
+  }
+
+  /* Page reveal — staggered fade up */
+  @keyframes reveal-up {
+    from {
+      opacity: 0;
+      transform: translateY(12px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  .reveal {
+    animation: reveal-up 0.7s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+  }
+  .reveal-1 { animation-delay: 0.05s; }
+  .reveal-2 { animation-delay: 0.12s; }
+  .reveal-3 { animation-delay: 0.2s; }
+  .reveal-4 { animation-delay: 0.28s; }
+  .reveal-5 { animation-delay: 0.36s; }
+  .reveal-6 { animation-delay: 0.44s; }
+
+  /* Marquee for the auth side panel */
+  @keyframes marquee {
+    from { transform: translateY(0); }
+    to { transform: translateY(-50%); }
+  }
+  .marquee-y {
+    animation: marquee 40s linear infinite;
+  }
+
+  /* Pulsing recording dot */
+  @keyframes pulse-rec {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.35; }
+  }
+  .pulse-rec {
+    animation: pulse-rec 1.8s ease-in-out infinite;
+  }
+}
+
+/* Print: isolate the marked sheet so only it prints (drops sidebar, KPIs, composer) */
+@media print {
+  body {
+    background: #fff;
+  }
+  body * {
+    visibility: hidden;
+  }
+  .print-area,
+  .print-area * {
+    visibility: visible;
+  }
+  .print-area {
+    position: absolute;
+    inset: 0 auto auto 0;
+    width: 100%;
+  }
+}
