@@ -9,7 +9,7 @@ export function Wordmark({
   tone?: "ink" | "white";
 }) {
   const ink = tone === "ink" ? "var(--color-ink)" : "white";
-  const red = "var(--color-acciona-red)";
+  const red = "var(--color-brand)";
   return (
     <span
       className={cn(
@@ -24,12 +24,12 @@ export function Wordmark({
           fill={red}
         />
       </svg>
-      <span>acciona</span>
+      <span>Briefing</span>
       <span
         className="ml-1 text-[9px] font-mono uppercase tracking-[0.2em] font-medium pt-1.5"
-        style={{ color: "var(--color-graphite-500)" }}
+        style={{ color: "var(--color-brand)" }}
       >
-        / safety
+        360
       </span>
     </span>
   );

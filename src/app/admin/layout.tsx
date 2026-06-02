@@ -79,7 +79,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
                 )}
               >
                 {active && (
-                  <span className="absolute left-0 inset-y-0 w-[3px] bg-[var(--color-acciona-red)]" />
+                  <span className="absolute left-0 inset-y-0 w-[3px] bg-[var(--color-brand)]" />
                 )}
                 <Icon className="h-4 w-4" />
                 {n.label}

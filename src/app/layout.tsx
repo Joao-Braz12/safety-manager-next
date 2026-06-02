@@ -26,7 +26,7 @@ const jetbrains = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Safety Manager — Acciona",
+  title: "Briefing 360",
   description:
     "Operational safety briefings, video training, and compliance for industrial teams.",
 };

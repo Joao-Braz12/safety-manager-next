@@ -27,7 +27,7 @@ export function DialogContent({
         {...props}
       >
         {children}
-        <DialogPrimitive.Close className="absolute right-4 top-4 h-8 w-8 inline-flex items-center justify-center text-[var(--color-graphite-600)] hover:text-[var(--color-acciona-red)] transition-colors">
+        <DialogPrimitive.Close className="absolute right-4 top-4 h-8 w-8 inline-flex items-center justify-center text-[var(--color-graphite-600)] hover:text-[var(--color-brand)] transition-colors">
           <X className="h-4 w-4" />
           <span className="sr-only">Close</span>
         </DialogPrimitive.Close>

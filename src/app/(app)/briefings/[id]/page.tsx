@@ -152,7 +152,7 @@ export default function BriefingDetailPage() {
     return (
       <div className="max-w-[1480px] mx-auto px-6 lg:px-10 py-20 text-center">
         {err ? (
-          <p className="text-[var(--color-acciona-red-deep)]">{err}</p>
+          <p className="text-[var(--color-brand-deep)]">{err}</p>
         ) : (
           <p className="font-mono text-[11px] uppercase tracking-[0.16em] text-[var(--color-graphite-500)]">
             {t("briefing.loadingBriefing")}
@@ -169,7 +169,7 @@ export default function BriefingDetailPage() {
       {/* Crumb */}
       <Link
         href="/dashboard"
-        className="inline-flex items-center gap-2 text-xs font-mono uppercase tracking-[0.18em] text-[var(--color-graphite-500)] hover:text-[var(--color-acciona-red)] transition-colors mb-8"
+        className="inline-flex items-center gap-2 text-xs font-mono uppercase tracking-[0.18em] text-[var(--color-graphite-500)] hover:text-[var(--color-brand)] transition-colors mb-8"
       >
         <ArrowLeft className="h-3.5 w-3.5" /> {t("briefing.backToDashboard")}
       </Link>
@@ -281,7 +281,7 @@ export default function BriefingDetailPage() {
                     <span
                       className={`flex h-8 w-8 shrink-0 items-center justify-center font-mono text-xs ${
                         done
-                          ? "bg-[var(--color-acciona-red)] text-white"
+                          ? "bg-[var(--color-brand)] text-white"
                           : active
                             ? "bg-white text-[var(--color-ink)]"
                             : "bg-[var(--color-graphite-100)] text-[var(--color-graphite-600)]"
@@ -314,7 +314,7 @@ export default function BriefingDetailPage() {
           {assignment && (
             <div className="mt-6 bg-[var(--color-ink)] text-white p-6 relative overflow-hidden">
               <div className="noise" />
-              <div className="font-mono text-[10px] uppercase tracking-[0.22em] text-[var(--color-acciona-red)] mb-3">
+              <div className="font-mono text-[10px] uppercase tracking-[0.22em] text-[var(--color-brand)] mb-3">
                 {t("briefing.signDeclaration")}
               </div>
               <p className="text-sm text-white/80 mb-5 leading-relaxed">
@@ -322,7 +322,7 @@ export default function BriefingDetailPage() {
               </p>
 
               {err && (
-                <div className="mb-3 text-xs text-[var(--color-acciona-red)] flex items-start gap-2">
+                <div className="mb-3 text-xs text-[var(--color-brand)] flex items-start gap-2">
                   <AlertTriangle className="h-3.5 w-3.5 mt-0.5" />
                   <span>{err}</span>
                 </div>
@@ -348,7 +348,7 @@ export default function BriefingDetailPage() {
                     onChange={(e) => setSignatureName(e.target.value)}
                     disabled={!allCompleted || submitting}
                     placeholder={t("briefing.namePlaceholder")}
-                    className="w-full bg-white/10 border border-white/20 px-3 py-2.5 text-sm text-white placeholder:text-white/35 outline-none focus:border-[var(--color-acciona-red)] disabled:opacity-50 mb-4"
+                    className="w-full bg-white/10 border border-white/20 px-3 py-2.5 text-sm text-white placeholder:text-white/35 outline-none focus:border-[var(--color-brand)] disabled:opacity-50 mb-4"
                   />
 
                   {/* Acknowledgement checkbox */}
@@ -358,7 +358,7 @@ export default function BriefingDetailPage() {
                       checked={agreed}
                       onChange={(e) => setAgreed(e.target.checked)}
                       disabled={!allCompleted || submitting}
-                      className="mt-0.5 h-4 w-4 shrink-0 accent-[var(--color-acciona-red)] disabled:opacity-50"
+                      className="mt-0.5 h-4 w-4 shrink-0 accent-[var(--color-brand)] disabled:opacity-50"
                     />
                     <span className="text-xs text-white/75 leading-relaxed">
                       {t("briefing.confirmText")}

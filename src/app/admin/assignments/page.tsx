@@ -116,7 +116,7 @@ export default function AssignmentsPage() {
           <>
             Push a briefing
             <br />
-            <span className="text-[var(--color-acciona-red)]">to your crew.</span>
+            <span className="text-[var(--color-brand)]">to your crew.</span>
           </>
         }
         description="Assign to an entire team in one action, or pick individuals one by one. Existing assignments are not duplicated."
@@ -245,7 +245,7 @@ export default function AssignmentsPage() {
         <aside className="col-span-12 lg:col-span-4">
           <div className="bg-[var(--color-ink)] text-white p-7 relative overflow-hidden">
             <div className="noise" />
-            <ListChecks className="h-8 w-8 text-[var(--color-acciona-red)] mb-5" />
+            <ListChecks className="h-8 w-8 text-[var(--color-brand)] mb-5" />
             <div className="font-mono text-[10px] uppercase tracking-[0.22em] text-white/55 mb-2">
               Live preview
             </div>
@@ -285,7 +285,7 @@ function Step({
   return (
     <div>
       <div className="flex items-baseline gap-3 mb-3">
-        <span className="font-mono text-[10px] tracking-[0.22em] uppercase text-[var(--color-acciona-red)]">
+        <span className="font-mono text-[10px] tracking-[0.22em] uppercase text-[var(--color-brand)]">
           {number}
         </span>
         <Label className="mb-0">{label}</Label>

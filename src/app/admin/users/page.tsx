@@ -86,7 +86,7 @@ export default function UsersPage() {
         description="Roles, teams and access. Role changes respect rank: you can only assign roles below your own."
       />
 
-      {err && <p className="mb-6 text-sm text-[var(--color-acciona-red-deep)]">{err}</p>}
+      {err && <p className="mb-6 text-sm text-[var(--color-brand-deep)]">{err}</p>}
 
       <TableShell headers={["ID", "Name", "Role", "Team", "Company", "Actions"]}>
         {!items && (
@@ -257,7 +257,7 @@ function RoleDialog({
             </Select>
           </div>
           {!valid && (
-            <div className="text-xs text-[var(--color-acciona-red-deep)] font-mono">
+            <div className="text-xs text-[var(--color-brand-deep)] font-mono">
               ↳ You cannot assign this role (rank rule)
             </div>
           )}

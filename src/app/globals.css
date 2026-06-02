@@ -2,9 +2,9 @@
 
 @theme {
   /* Brand */
-  --color-acciona-red: #e20714;
-  --color-acciona-red-deep: #b8050f;
-  --color-acciona-red-soft: #ffe8ea;
+  --color-brand: #e20714;
+  --color-brand-deep: #b8050f;
+  --color-brand-soft: #ffe8ea;
 
   /* Neutrals — concrete & graphite */
   --color-ink: #0c0c0e;
@@ -59,7 +59,7 @@
   }
 
   ::selection {
-    background: var(--color-acciona-red);
+    background: var(--color-brand);
     color: white;
   }
 }

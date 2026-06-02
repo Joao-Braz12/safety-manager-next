@@ -251,11 +251,11 @@ export default function BriefingsAdminPage() {
                 <span className="font-mono text-[10px] uppercase tracking-[0.18em] text-[var(--color-graphite-500)]">
                   #{formatId(b.id)}
                 </span>
-                <ArrowUpRight className="h-4 w-4 text-[var(--color-graphite-400)] group-hover:text-[var(--color-acciona-red)]" />
+                <ArrowUpRight className="h-4 w-4 text-[var(--color-graphite-400)] group-hover:text-[var(--color-brand)]" />
               </div>
               <div className="flex items-start gap-3 mb-3">
-                <ClipboardList className="h-5 w-5 text-[var(--color-acciona-red)] shrink-0 mt-1" />
-                <h3 className="font-display font-bold text-xl leading-tight group-hover:text-[var(--color-acciona-red)] transition-colors">
+                <ClipboardList className="h-5 w-5 text-[var(--color-brand)] shrink-0 mt-1" />
+                <h3 className="font-display font-bold text-xl leading-tight group-hover:text-[var(--color-brand)] transition-colors">
                   {b.title}
                 </h3>
               </div>

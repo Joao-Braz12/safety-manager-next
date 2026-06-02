@@ -53,12 +53,12 @@ export default function DeclaredPage() {
 
           {/* Stamp */}
           <div className="absolute top-7 right-7 hidden md:block">
-            <div className="border-2 border-[var(--color-acciona-red)] text-[var(--color-acciona-red)] font-display font-black px-3 py-2 -rotate-6 text-xs uppercase tracking-[0.18em]">
+            <div className="border-2 border-[var(--color-brand)] text-[var(--color-brand)] font-display font-black px-3 py-2 -rotate-6 text-xs uppercase tracking-[0.18em]">
               {t("declared.stamp")}
             </div>
           </div>
 
-          <CheckCircle2 className="h-14 w-14 text-[var(--color-acciona-red)] mb-8" />
+          <CheckCircle2 className="h-14 w-14 text-[var(--color-brand)] mb-8" />
 
           <div className="font-mono text-[10px] uppercase tracking-[0.22em] text-white/55 mb-3">
             {t("declared.receipt")} / {formatId(briefingId)} · {dt(signedAt)}

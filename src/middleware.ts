@@ -3,6 +3,8 @@ import { verifyToken } from "@/lib/jwt";
 
 const PUBLIC: RegExp[] = [
   /^\/api\/auth\/(login|register)$/,
+  // Cron routes self-guard with CRON_SECRET instead of a JWT.
+  /^\/api\/cron(\/.*)?$/,
 ];
 
 const ADMIN_ONLY: RegExp[] = [

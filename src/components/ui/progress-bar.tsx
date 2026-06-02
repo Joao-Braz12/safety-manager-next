@@ -24,7 +24,7 @@ export function ProgressBar({
       <div
         className={cn(
           "absolute inset-y-0 left-0 transition-[width] duration-500 ease-out",
-          accent ? "bg-[var(--color-acciona-red)]" : "bg-[var(--color-ink)]",
+          accent ? "bg-[var(--color-brand)]" : "bg-[var(--color-ink)]",
         )}
         style={{ width: `${pct}%` }}
       />

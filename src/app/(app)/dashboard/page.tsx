@@ -93,7 +93,7 @@ export default function DashboardPage() {
           <h1 className="font-display font-black text-5xl lg:text-7xl leading-[0.92] tracking-[-0.04em] text-[var(--color-ink)]">
             {t("dashboard.greeting")}
             <br />
-            <span className="text-[var(--color-acciona-red)]">{firstName}.</span>
+            <span className="text-[var(--color-brand)]">{firstName}.</span>
           </h1>
           <p className="mt-6 text-[var(--color-graphite-600)] max-w-xl text-lg leading-relaxed">
             {t(
@@ -111,7 +111,7 @@ export default function DashboardPage() {
               {t("dashboard.complianceStatus")}
             </div>
             <div className="mt-3 flex items-baseline gap-2">
-              <ShieldCheck className="h-7 w-7 text-[var(--color-acciona-red)]" />
+              <ShieldCheck className="h-7 w-7 text-[var(--color-brand)]" />
               <span className="font-display font-black text-5xl">
                 {assignments
                   ? Math.round(
@@ -148,10 +148,10 @@ export default function DashboardPage() {
       </section>
 
       {err && (
-        <div className="mb-6 p-4 bg-[var(--color-acciona-red-soft)] border-l-4 border-[var(--color-acciona-red)] flex items-start gap-3">
-          <AlertTriangle className="h-5 w-5 text-[var(--color-acciona-red)] shrink-0 mt-0.5" />
+        <div className="mb-6 p-4 bg-[var(--color-brand-soft)] border-l-4 border-[var(--color-brand)] flex items-start gap-3">
+          <AlertTriangle className="h-5 w-5 text-[var(--color-brand)] shrink-0 mt-0.5" />
           <div>
-            <div className="font-mono text-[10px] uppercase tracking-[0.16em] text-[var(--color-acciona-red-deep)]">
+            <div className="font-mono text-[10px] uppercase tracking-[0.16em] text-[var(--color-brand-deep)]">
               {t("dashboard.couldntLoad")}
             </div>
             <p className="text-sm text-[var(--color-ink)]">{err}</p>
@@ -261,7 +261,7 @@ function BriefingCard({
           )}
         </div>
 
-        <h3 className="font-display font-bold text-xl leading-tight text-[var(--color-ink)] mb-3 group-hover:text-[var(--color-acciona-red)] transition-colors">
+        <h3 className="font-display font-bold text-xl leading-tight text-[var(--color-ink)] mb-3 group-hover:text-[var(--color-brand)] transition-colors">
           {assignment.briefing.title}
         </h3>
 
@@ -285,12 +285,12 @@ function BriefingCard({
             <span>·</span>
             <span>{formatDuration(totalSec)}</span>
           </div>
-          <ArrowUpRight className="h-4 w-4 text-[var(--color-graphite-400)] group-hover:text-[var(--color-acciona-red)] group-hover:-translate-y-0.5 group-hover:translate-x-0.5 transition-all" />
+          <ArrowUpRight className="h-4 w-4 text-[var(--color-graphite-400)] group-hover:text-[var(--color-brand)] group-hover:-translate-y-0.5 group-hover:translate-x-0.5 transition-all" />
         </div>
       </div>
 
       {/* Hover accent strip */}
-      <div className="absolute inset-x-0 bottom-0 h-px bg-[var(--color-acciona-red)] scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-300" />
+      <div className="absolute inset-x-0 bottom-0 h-px bg-[var(--color-brand)] scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-300" />
     </Link>
   );
 }

@@ -5,9 +5,9 @@ const prisma = new PrismaClient();
 
 async function main() {
   const company = await prisma.company.upsert({
-    where: { name: "Acciona Construcción" },
+    where: { name: "Acme Construction" },
     update: {},
-    create: { name: "Acciona Construcción" },
+    create: { name: "Acme Construction" },
   });
 
   // Project + team
@@ -60,16 +60,19 @@ async function main() {
       title: "Working at heights — fall arrest essentials",
       url: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4",
       duration: 30,
+      riskCategory: "1.1", // Falls from height
     },
     {
       title: "Safe lifting & material handling",
       url: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4",
       duration: 45,
+      riskCategory: "6.1", // Overloads & overexertion
     },
     {
       title: "PPE inspection routine",
       url: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4",
       duration: 15,
+      riskCategory: "1.5", // Falling objects
     },
   ];
 
@@ -82,7 +85,7 @@ async function main() {
     const video = existing
       ? await prisma.video.update({
           where: { id: existing.id },
-          data: { url: v.url, duration: v.duration, companyId: company.id },
+          data: { url: v.url, duration: v.duration, riskCategory: v.riskCategory, companyId: company.id },
         })
       : await prisma.video.create({
           data: { ...v, createdById: adminUser.id, companyId: company.id },

@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { FileSignature, Loader2, ShieldCheck, X, Printer } from "lucide-react";
+import { FileSignature, Loader2, ShieldCheck, X, Printer, Mail } from "lucide-react";
 import { api, ApiError } from "@/lib/api-client";
 import {
   PageBody,
@@ -78,6 +78,9 @@ export default function ReportsPage() {
         </section>
       )}
 
+      {/* Reminders */}
+      <RemindersPanel />
+
       {/* Tabs */}
       <div className="flex gap-1 mb-8 border-b border-[var(--color-graphite-200)] reveal reveal-2">
         <TabButton active={tab === "team"} onClick={() => setTab("team")}>
@@ -94,6 +97,58 @@ export default function ReportsPage() {
         <IndividualsLedger teams={teams} />
       )}
     </PageBody>
+  );
+}
+
+/* ------------------------------- Reminders panel ------------------------------- */
+
+type RemindResult = { sent: number; skipped: number; failed: number };
+
+function RemindersPanel() {
+  const t = useT();
+  const [sending, setSending] = useState(false);
+  const [msg, setMsg] = useState<string | undefined>();
+
+  async function send() {
+    setSending(true);
+    setMsg(undefined);
+    try {
+      const r = await api.post<RemindResult>("/api/reminders");
+      setMsg(
+        t("reports.remindResult", { sent: r.sent, skipped: r.skipped, failed: r.failed }),
+      );
+    } catch (e) {
+      setMsg(e instanceof ApiError ? e.message : t("reports.remindFailed"));
+    } finally {
+      setSending(false);
+    }
+  }
+
+  return (
+    <section className="mb-12 reveal reveal-2">
+      <div className="font-mono text-[10px] uppercase tracking-[0.22em] text-[var(--color-graphite-500)] mb-4 pb-3 border-b border-[var(--color-ink)]">
+        {t("reports.remindHeading")}
+      </div>
+      <div className="bg-white border border-[var(--color-graphite-200)] p-7 flex flex-col md:flex-row md:items-center md:justify-between gap-5">
+        <p className="text-sm text-[var(--color-graphite-600)] max-w-xl">
+          {t("reports.remindDescription")}
+        </p>
+        <div className="flex items-center gap-4">
+          {msg && <span className="text-sm text-[var(--color-graphite-600)]">{msg}</span>}
+          <Button onClick={send} variant="primary" disabled={sending}>
+            {sending ? (
+              <>
+                {t("reports.remindSending")} <Loader2 className="h-4 w-4 animate-spin" />
+              </>
+            ) : (
+              <>
+                {t("reports.remindButton")} <Mail className="h-4 w-4" />
+              </>
+            )}
+          </Button>
+        </div>
+      </div>
+    </section>
   );
 }
 
@@ -118,7 +173,7 @@ function TabButton({
     >
       {children}
       {active && (
-        <span className="absolute -bottom-px left-3 right-3 h-[2px] bg-[var(--color-acciona-red)]" />
+        <span className="absolute -bottom-px left-3 right-3 h-[2px] bg-[var(--color-brand)]" />
       )}
     </button>
   );
@@ -228,7 +283,7 @@ function TeamSignSheet({ teams }: { teams: Team[] }) {
             {t("reports.noTeamBriefings")}
           </p>
         )}
-        {err && <p className="mt-4 text-sm text-[var(--color-acciona-red-deep)]">{err}</p>}
+        {err && <p className="mt-4 text-sm text-[var(--color-brand-deep)]">{err}</p>}
       </section>
 
       {sheet && (
@@ -254,7 +309,7 @@ function TeamSignSheet({ teams }: { teams: Team[] }) {
                 <button
                   type="button"
                   onClick={() => setSheet(null)}
-                  className="text-xs text-[var(--color-graphite-500)] hover:text-[var(--color-acciona-red)] inline-flex items-center gap-1"
+                  className="text-xs text-[var(--color-graphite-500)] hover:text-[var(--color-brand)] inline-flex items-center gap-1"
                 >
                   <X className="h-3 w-3" /> {t("common.close")}
                 </button>
@@ -300,7 +355,7 @@ function TeamSignSheet({ teams }: { teams: Team[] }) {
                       <ShieldCheck className="h-3.5 w-3.5" /> {t("common.signed")}
                     </span>
                   ) : (
-                    <span className="inline-flex items-center gap-1.5 font-mono text-[10px] uppercase tracking-[0.16em] text-[var(--color-acciona-red-deep)]">
+                    <span className="inline-flex items-center gap-1.5 font-mono text-[10px] uppercase tracking-[0.16em] text-[var(--color-brand-deep)]">
                       <X className="h-3.5 w-3.5" /> {t("common.pending")}
                     </span>
                   )}
@@ -309,7 +364,7 @@ function TeamSignSheet({ teams }: { teams: Team[] }) {
             </ol>
 
             <div className="mt-6 text-[10px] font-mono uppercase tracking-[0.16em] text-[var(--color-graphite-500)] flex justify-between">
-              <span>ISO 45001 · Acciona Safety Manager</span>
+              <span>ISO 45001 · Briefing 360</span>
               <span>{t("reports.generated")} · {formatDateTime(new Date(), intlLocale(locale))}</span>
             </div>
           </div>

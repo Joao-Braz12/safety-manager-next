@@ -1,5 +1,6 @@
 import { z } from "zod";
 import { Role } from "@prisma/client";
+import { isRiskSubCode } from "@/lib/risk-taxonomy";
 
 export const companySchema = z.object({
   name: z.string().min(1),
@@ -20,6 +21,11 @@ export const videoSchema = z.object({
   url: z.string().min(1),
   duration: z.number().int().positive(),
   companyId: z.number().int().positive().optional(),
+  // Risk-taxonomy subcategory code (e.g. "1.1"); null/omitted = uncategorized.
+  riskCategory: z
+    .string()
+    .refine(isRiskSubCode, "Invalid risk category")
+    .nullish(),
 });
 
 export const briefingSchema = z.object({

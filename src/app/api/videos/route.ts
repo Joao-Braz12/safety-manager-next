@@ -39,6 +39,7 @@ export async function POST(req: NextRequest) {
       title: parsed.data.title,
       url: parsed.data.url,
       duration: parsed.data.duration,
+      riskCategory: parsed.data.riskCategory ?? null,
       createdById: user.id,
       companyId: companyId ?? undefined,
     },

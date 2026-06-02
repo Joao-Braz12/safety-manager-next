@@ -94,7 +94,7 @@ export function UserMenu({ tone = "ink" }: { tone?: "ink" | "white" }) {
           <div className="border-t border-[var(--color-graphite-200)]" />
           <DropdownMenu.Item
             onSelect={signOut}
-            className="flex items-center gap-2 px-3 py-2 text-sm cursor-pointer focus:outline-none focus:bg-[var(--color-acciona-red)] focus:text-white text-[var(--color-acciona-red-deep)]"
+            className="flex items-center gap-2 px-3 py-2 text-sm cursor-pointer focus:outline-none focus:bg-[var(--color-brand)] focus:text-white text-[var(--color-brand-deep)]"
           >
             <LogOut className="h-4 w-4" /> {t("userMenu.signOut")}
           </DropdownMenu.Item>

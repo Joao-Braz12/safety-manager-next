@@ -30,14 +30,14 @@ export default function AuthLayout({ children }: { children: ReactNode }) {
         {/* Hero typography */}
         <div className="relative z-10 flex-1 flex flex-col justify-end p-8 lg:p-12">
           <div className="mb-10">
-            <div className="font-mono text-[10px] uppercase tracking-[0.22em] text-[var(--color-acciona-red)] mb-6">
-              <span className="inline-block w-2 h-2 bg-[var(--color-acciona-red)] mr-2 pulse-rec" />
+            <div className="font-mono text-[10px] uppercase tracking-[0.22em] text-[var(--color-brand)] mb-6">
+              <span className="inline-block w-2 h-2 bg-[var(--color-brand)] mr-2 pulse-rec" />
               Operational Safety · Live
             </div>
             <h1 className="font-display font-black text-[10vw] lg:text-[5.2rem] xl:text-[6rem] leading-[0.92] tracking-[-0.04em] text-white">
               Zero
               <br />
-              <span className="text-[var(--color-acciona-red)]">incidents.</span>
+              <span className="text-[var(--color-brand)]">incidents.</span>
               <br />
               By design.
             </h1>
@@ -66,7 +66,7 @@ export default function AuthLayout({ children }: { children: ReactNode }) {
           {/* Footer meta */}
           <div className="flex items-center justify-between text-[10px] font-mono uppercase tracking-[0.18em] text-white/40 pt-6 border-t border-white/10">
             <span>ISO 45001 · Certified</span>
-            <span>{new Date().getFullYear()} · Acciona, S.A.</span>
+            <span>{new Date().getFullYear()} · Briefing 360</span>
           </div>
         </div>
       </aside>

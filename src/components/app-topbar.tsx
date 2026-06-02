@@ -46,7 +46,7 @@ export function AppTopbar() {
                 >
                   {l.label}
                   {active && (
-                    <span className="absolute -bottom-[17px] left-3 right-3 h-[2px] bg-[var(--color-acciona-red)]" />
+                    <span className="absolute -bottom-[17px] left-3 right-3 h-[2px] bg-[var(--color-brand)]" />
                   )}
                 </Link>
               );

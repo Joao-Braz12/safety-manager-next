@@ -118,7 +118,7 @@ export function VideoPlayer({
           className="absolute inset-0 flex items-center justify-center group/play"
           aria-label="Play"
         >
-          <span className="h-20 w-20 flex items-center justify-center bg-[var(--color-acciona-red)] text-white group-hover/play:scale-110 transition-transform shadow-2xl">
+          <span className="h-20 w-20 flex items-center justify-center bg-[var(--color-brand)] text-white group-hover/play:scale-110 transition-transform shadow-2xl">
             <Play className="h-9 w-9 fill-current ml-1" />
           </span>
         </button>
@@ -136,7 +136,7 @@ export function VideoPlayer({
         {/* Progress bar */}
         <div className="h-1 bg-white/20 mb-4 relative">
           <div
-            className="absolute inset-y-0 left-0 bg-[var(--color-acciona-red)] transition-[width]"
+            className="absolute inset-y-0 left-0 bg-[var(--color-brand)] transition-[width]"
             style={{ width: `${pct}%` }}
           />
         </div>

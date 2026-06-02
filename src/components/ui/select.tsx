@@ -9,6 +9,21 @@ export const Select = SelectPrimitive.Root;
 export const SelectValue = SelectPrimitive.Value;
 export const SelectGroup = SelectPrimitive.Group;
 
+export const SelectLabel = React.forwardRef<
+  React.ElementRef<typeof SelectPrimitive.Label>,
+  React.ComponentPropsWithoutRef<typeof SelectPrimitive.Label>
+>(({ className, ...props }, ref) => (
+  <SelectPrimitive.Label
+    ref={ref}
+    className={cn(
+      "px-3 pt-3 pb-1 font-mono text-[10px] uppercase tracking-[0.16em] text-[var(--color-graphite-500)]",
+      className,
+    )}
+    {...props}
+  />
+));
+SelectLabel.displayName = "SelectLabel";
+
 export const SelectTrigger = React.forwardRef<
   React.ElementRef<typeof SelectPrimitive.Trigger>,
   React.ComponentPropsWithoutRef<typeof SelectPrimitive.Trigger>
@@ -20,7 +35,7 @@ export const SelectTrigger = React.forwardRef<
       "border-0 border-b border-[var(--color-graphite-300)]",
       "px-0 py-2 text-base text-[var(--color-ink)]",
       "data-[placeholder]:text-[var(--color-graphite-500)]",
-      "focus:outline-none focus:border-[var(--color-acciona-red)]",
+      "focus:outline-none focus:border-[var(--color-brand)]",
       "transition-colors",
       className,
     )}

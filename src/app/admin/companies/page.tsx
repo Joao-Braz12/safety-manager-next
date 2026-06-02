@@ -88,7 +88,7 @@ export default function CompaniesPage() {
                   required
                   value={name}
                   onChange={(e) => setName(e.target.value)}
-                  placeholder="Acciona Construcción"
+                  placeholder="Acme Construction"
                 />
                 <FieldError message={err} />
                 <DialogFooter>
@@ -130,7 +130,7 @@ export default function CompaniesPage() {
                 </td>
                 <td className="px-5 py-4 flex items-center gap-3">
                   {expanded ? (
-                    <ChevronDown className="h-4 w-4 text-[var(--color-acciona-red)]" />
+                    <ChevronDown className="h-4 w-4 text-[var(--color-brand)]" />
                   ) : (
                     <ChevronRight className="h-4 w-4 text-[var(--color-graphite-400)]" />
                   )}

@@ -69,6 +69,8 @@ model Video {
   title       String
   url         String
   duration    Int
+  // Risk-taxonomy subcategory code (e.g. "1.1"); see src/lib/risk-taxonomy.ts.
+  riskCategory String?        @db.VarChar(8)
   createdBy   User            @relation("VideoCreatedBy", fields: [createdById], references: [id])
   createdById Int
   company     Company?        @relation(fields: [companyId], references: [id])

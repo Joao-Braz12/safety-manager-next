@@ -60,7 +60,7 @@ export default function LoginPage() {
             required
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            placeholder="name@acciona.com"
+            placeholder="name@company.com"
           />
         </div>
 
@@ -109,7 +109,7 @@ export default function LoginPage() {
         <span className="text-[var(--color-graphite-600)]">{t("login.noAccount")}</span>
         <Link
           href="/register"
-          className="font-mono text-[11px] uppercase tracking-[0.16em] text-[var(--color-ink)] hover:text-[var(--color-acciona-red)] transition-colors"
+          className="font-mono text-[11px] uppercase tracking-[0.16em] text-[var(--color-ink)] hover:text-[var(--color-brand)] transition-colors"
         >
           {t("login.createAccount")} →
         </Link>

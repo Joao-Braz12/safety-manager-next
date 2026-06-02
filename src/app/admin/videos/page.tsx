@@ -15,13 +15,30 @@ import {
 } from "@/components/ui/dialog";
 import { Input, Label, FieldError } from "@/components/ui/input";
 import { formatDuration, formatId } from "@/lib/utils";
+import {
+  RiskBadge,
+  RiskCategorySelect,
+  RiskGroupFilter,
+  RISK_NONE,
+  RISK_ALL,
+  matchesGroup,
+} from "@/components/risk-category";
 
-type Video = { id: number; title: string; url: string; duration: number; companyId: number | null };
+type Video = {
+  id: number;
+  title: string;
+  url: string;
+  duration: number;
+  companyId: number | null;
+  riskCategory: string | null;
+};
 
 export default function VideosPage() {
   const [items, setItems] = useState<Video[] | null>(null);
   const [open, setOpen] = useState(false);
   const [form, setForm] = useState({ title: "", url: "", minutes: "", seconds: "" });
+  const [category, setCategory] = useState<string>(RISK_NONE);
+  const [filter, setFilter] = useState<string>(RISK_ALL);
   const [submitting, setSubmitting] = useState(false);
   const [err, setErr] = useState<string | undefined>();
 
@@ -47,8 +64,10 @@ export default function VideosPage() {
         title: form.title,
         url: form.url,
         duration: Number(form.minutes || 0) * 60 + Number(form.seconds || 0),
+        riskCategory: category === RISK_NONE ? null : category,
       });
       setForm({ title: "", url: "", minutes: "", seconds: "" });
+      setCategory(RISK_NONE);
       setOpen(false);
       load();
     } catch (e) {
@@ -57,6 +76,11 @@ export default function VideosPage() {
       setSubmitting(false);
     }
   }
+
+  const visible =
+    items && filter !== RISK_ALL
+      ? items.filter((v) => matchesGroup(v.riskCategory, filter))
+      : items;
 
   return (
     <PageBody>
@@ -99,6 +123,10 @@ export default function VideosPage() {
                     Must be a direct video file (.mp4 / .webm) — not a YouTube or Vimeo
                     page link. Use <code>/sample/safety-demo.mp4</code> for testing.
                   </span>
+                </div>
+                <div>
+                  <Label>Risk category</Label>
+                  <RiskCategorySelect value={category} onChange={setCategory} />
                 </div>
                 <div>
                   <Label htmlFor="minutes">Duration</Label>
@@ -148,23 +176,45 @@ export default function VideosPage() {
         }
       />
 
-      <TableShell headers={["ID", "Title", "Duration", "URL"]}>
+      <div className="mb-6 flex items-center gap-3">
+        <span className="font-mono text-[10px] uppercase tracking-[0.18em] text-[var(--color-graphite-500)]">
+          Filter
+        </span>
+        <div className="w-72">
+          <RiskGroupFilter value={filter} onChange={setFilter} />
+        </div>
+      </div>
+
+      <TableShell headers={["ID", "Title", "Risk category", "Duration", "URL"]}>
         {!items && (
           <tr>
-            <td colSpan={4} className="py-10 text-center text-[var(--color-graphite-500)]">
+            <td colSpan={5} className="py-10 text-center text-[var(--color-graphite-500)]">
               Loading…
             </td>
           </tr>
         )}
-        {items && items.length === 0 && <EmptyRow colSpan={4} message="No videos registered yet." />}
-        {items?.map((v) => (
+        {visible && visible.length === 0 && (
+          <EmptyRow colSpan={5} message="No videos match this filter." />
+        )}
+        {visible?.map((v) => (
           <tr key={v.id} className="hover:bg-[var(--color-graphite-50)]">
             <td className="px-5 py-4 font-mono text-xs text-[var(--color-graphite-600)]">
               {formatId(v.id)}
             </td>
-            <td className="px-5 py-4 flex items-center gap-3">
-              <Film className="h-4 w-4 text-[var(--color-graphite-400)]" />
-              <span className="font-medium">{v.title}</span>
+            <td className="px-5 py-4">
+              <span className="flex items-center gap-3">
+                <Film className="h-4 w-4 text-[var(--color-graphite-400)]" />
+                <span className="font-medium">{v.title}</span>
+              </span>
+            </td>
+            <td className="px-5 py-4">
+              {v.riskCategory ? (
+                <RiskBadge code={v.riskCategory} />
+              ) : (
+                <span className="font-mono text-[10px] uppercase tracking-[0.12em] text-[var(--color-graphite-400)]">
+                  —
+                </span>
+              )}
             </td>
             <td className="px-5 py-4 font-mono text-sm">{formatDuration(v.duration)}</td>
             <td className="px-5 py-4">
@@ -172,7 +222,7 @@ export default function VideosPage() {
                 href={v.url}
                 target="_blank"
                 rel="noreferrer"
-                className="inline-flex items-center gap-1.5 text-xs font-mono text-[var(--color-acciona-red)] hover:underline truncate max-w-xs"
+                className="inline-flex items-center gap-1.5 text-xs font-mono text-[var(--color-brand)] hover:underline truncate max-w-xs"
               >
                 <Play className="h-3 w-3" /> {v.url}
               </a>

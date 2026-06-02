@@ -38,14 +38,14 @@ export default function AdminConsolePage() {
           <>
             Operations,
             <br />
-            <span className="text-[var(--color-acciona-red)]">at a glance.</span>
+            <span className="text-[var(--color-brand)]">at a glance.</span>
           </>
         }
         description={`Real-time compliance posture across your${session?.role === "ROLE_ADMIN" ? " entire estate" : " company"}.`}
       />
 
       {err && (
-        <p className="mb-6 text-sm text-[var(--color-acciona-red-deep)]">{err}</p>
+        <p className="mb-6 text-sm text-[var(--color-brand-deep)]">{err}</p>
       )}
 
       {report && (
@@ -139,8 +139,8 @@ function QuickAction({
       className="group bg-[var(--color-bone)] hover:bg-white p-6 transition-colors"
     >
       <div className="flex items-center justify-between mb-6">
-        <Icon className="h-6 w-6 text-[var(--color-acciona-red)]" />
-        <ArrowUpRight className="h-4 w-4 text-[var(--color-graphite-400)] group-hover:text-[var(--color-acciona-red)] group-hover:-translate-y-0.5 group-hover:translate-x-0.5 transition-all" />
+        <Icon className="h-6 w-6 text-[var(--color-brand)]" />
+        <ArrowUpRight className="h-4 w-4 text-[var(--color-graphite-400)] group-hover:text-[var(--color-brand)] group-hover:-translate-y-0.5 group-hover:translate-x-0.5 transition-all" />
       </div>
       <div className="font-display font-bold text-lg leading-tight">{title}</div>
       <div className="text-sm text-[var(--color-graphite-600)] mt-1">{hint}</div>

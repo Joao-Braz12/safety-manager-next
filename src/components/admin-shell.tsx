@@ -124,7 +124,7 @@ export function ExpandedCell({
 }) {
   return (
     <tr className="bg-[var(--color-graphite-50)]">
-      <td colSpan={colSpan} className="px-5 py-5 border-l-2 border-[var(--color-acciona-red)]">
+      <td colSpan={colSpan} className="px-5 py-5 border-l-2 border-[var(--color-brand)]">
         {children}
       </td>
     </tr>
