@@ -101,14 +101,19 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
         </div>
       </aside>
 
-      {/* Mobile topbar */}
-      <div className="lg:hidden flex items-center justify-between p-4 bg-[var(--color-ink)] text-white sticky top-0 z-30">
-        <BrandLink tone="white" />
-        <UserMenu tone="white" />
-      </div>
+      {/* Content column (holds the mobile topbar + page on small screens) */}
+      <div className="flex-1 min-w-0 flex flex-col">
+        {/* Mobile topbar */}
+        <div className="lg:hidden flex items-center justify-between gap-3 p-4 bg-[var(--color-ink)] text-white sticky top-0 z-30">
+          <BrandLink tone="white" />
+          <div className="flex items-center gap-3">
+            <LanguageSwitcher tone="white" />
+            <UserMenu tone="white" />
+          </div>
+        </div>
 
-      {/* Content */}
-      <div className="flex-1 min-w-0">{children}</div>
+        <div className="flex-1 min-w-0">{children}</div>
+      </div>
     </div>
   );
 }

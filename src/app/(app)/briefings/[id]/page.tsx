@@ -175,8 +175,8 @@ export default function BriefingDetailPage() {
       </Link>
 
       {/* Header */}
-      <header className="grid grid-cols-12 gap-8 mb-10 reveal">
-        <div className="col-span-12 lg:col-span-8">
+      <header className="grid grid-cols-1 lg:grid-cols-12 gap-8 mb-10 reveal">
+        <div className="lg:col-span-8">
           <div className="flex items-center gap-3 mb-5">
             <span className="font-mono text-[10px] uppercase tracking-[0.22em] text-[var(--color-graphite-500)]">
               Briefing / {formatId(briefing.id)}
@@ -199,7 +199,7 @@ export default function BriefingDetailPage() {
           )}
         </div>
 
-        <div className="col-span-12 lg:col-span-4 reveal reveal-2">
+        <div className="lg:col-span-4 reveal reveal-2">
           <div className="bg-white border border-[var(--color-graphite-200)] p-6">
             <div className="font-mono text-[10px] uppercase tracking-[0.18em] text-[var(--color-graphite-500)] mb-3">
               {t("briefing.yourProgress")}
@@ -224,9 +224,9 @@ export default function BriefingDetailPage() {
       </header>
 
       {/* Main */}
-      <div className="grid grid-cols-12 gap-8">
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
         {/* Player */}
-        <div className="col-span-12 lg:col-span-8 reveal reveal-3">
+        <div className="lg:col-span-8 reveal reveal-3">
           {activeVideo ? (
             <>
               <VideoPlayer
@@ -259,7 +259,7 @@ export default function BriefingDetailPage() {
         </div>
 
         {/* Playlist + declaration */}
-        <aside className="col-span-12 lg:col-span-4 reveal reveal-4">
+        <aside className="lg:col-span-4 reveal reveal-4">
           <div className="font-mono text-[10px] uppercase tracking-[0.22em] text-[var(--color-graphite-500)] mb-3">
             {t("briefing.playlist")}
           </div>

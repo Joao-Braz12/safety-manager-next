@@ -122,10 +122,10 @@ export default function AssignmentsPage() {
         description="Assign to an entire team in one action, or pick individuals one by one. Existing assignments are not duplicated."
       />
 
-      <div className="grid grid-cols-12 gap-8">
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
         {/* Composer */}
-        <section className="col-span-12 lg:col-span-8">
-          <div className="bg-white border border-[var(--color-graphite-200)] p-8 space-y-7">
+        <section className="lg:col-span-8 min-w-0">
+          <div className="bg-white border border-[var(--color-graphite-200)] p-5 sm:p-8 space-y-7">
             {/* Step 1: briefing */}
             <Step number="01" label="Briefing">
               <Select value={briefingId} onValueChange={setBriefingId}>
@@ -219,7 +219,7 @@ export default function AssignmentsPage() {
               </div>
             )}
 
-            <div className="pt-3 border-t border-[var(--color-graphite-200)] flex items-center justify-between">
+            <div className="pt-3 border-t border-[var(--color-graphite-200)] flex flex-wrap items-center justify-between gap-3">
               <div className="font-mono text-[10px] uppercase tracking-[0.16em] text-[var(--color-graphite-500)]">
                 {mode === "team"
                   ? `${teamUsers.length} member${teamUsers.length === 1 ? "" : "s"} affected`
@@ -242,8 +242,8 @@ export default function AssignmentsPage() {
         </section>
 
         {/* Side panel: preview */}
-        <aside className="col-span-12 lg:col-span-4">
-          <div className="bg-[var(--color-ink)] text-white p-7 relative overflow-hidden">
+        <aside className="lg:col-span-4 min-w-0">
+          <div className="bg-[var(--color-ink)] text-white p-6 sm:p-7 relative overflow-hidden">
             <div className="noise" />
             <ListChecks className="h-8 w-8 text-[var(--color-brand)] mb-5" />
             <div className="font-mono text-[10px] uppercase tracking-[0.22em] text-white/55 mb-2">

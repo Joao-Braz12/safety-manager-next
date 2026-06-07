@@ -83,8 +83,8 @@ export default function DashboardPage() {
   return (
     <div className="max-w-[1480px] mx-auto px-6 lg:px-10 py-10 lg:py-14">
       {/* Hero */}
-      <section className="grid grid-cols-12 gap-8 lg:gap-12 mb-14">
-        <div className="col-span-12 lg:col-span-8 reveal">
+      <section className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 mb-14">
+        <div className="lg:col-span-8 reveal">
           <div className="font-mono text-[10px] uppercase tracking-[0.22em] text-[var(--color-graphite-500)] mb-6 flex items-center gap-3">
             <span>{t("dashboard.operatorBrief")} / {formatDate(new Date(), intlLocale(locale))}</span>
             <span className="flex-1 h-px bg-[var(--color-graphite-200)] mt-px" />
@@ -104,7 +104,7 @@ export default function DashboardPage() {
           </p>
         </div>
 
-        <aside className="col-span-12 lg:col-span-4 reveal reveal-2">
+        <aside className="lg:col-span-4 reveal reveal-2">
           <div className="bg-[var(--color-ink)] text-white p-7 relative overflow-hidden">
             <div className="noise" />
             <div className="font-mono text-[10px] uppercase tracking-[0.2em] text-white/55">
